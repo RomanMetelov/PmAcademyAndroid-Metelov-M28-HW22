@@ -8,13 +8,11 @@
     <dimen name="crate_new_post_fragment_til_body_marginTop">50dp</dimen>
     <dimen name="crate_new_post_fragment_til_marginHorizontal">12dp</dimen>
 
-
     <dimen name="post_title_text_size">24sp</dimen>
     <dimen name="view_holder_padding">12dp</dimen>
     <dimen name="view_holder_margin">8dp</dimen>
 
     <dimen name="text_view_padding">4dp</dimen>
-
 
     <dimen name="post_body_text_size">18sp</dimen>
     <dimen name="post_author_text_size">12sp</dimen>

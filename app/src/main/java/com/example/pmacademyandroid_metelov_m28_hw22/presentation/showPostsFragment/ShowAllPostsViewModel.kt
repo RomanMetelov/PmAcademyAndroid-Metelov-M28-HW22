@@ -3,38 +3,39 @@ package com.example.pmacademyandroid_metelov_m28_hw22.presentation.showPostsFrag
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.pmacademyandroid_metelov_m28_hw22.data.PostsInfoRepository
 import com.example.pmacademyandroid_metelov_m28_hw22.domain.GetAllPostsUseCase
 import com.example.pmacademyandroid_metelov_m28_hw22.presentation.PostUiMapper
 import com.example.pmacademyandroid_metelov_m28_hw22.presentation.PostUiModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class ShowAllPostsViewModel @Inject constructor(
-        private val allPostsUseCase: GetAllPostsUseCase,
-        postsInfoRepository: PostsInfoRepository,
-        private val postUiMapper: PostUiMapper
-) : ViewModel(), Observer {
-
-    init {
-        postsInfoRepository.addObserverFun(this)
-    }
+    private val allPostsUseCase: GetAllPostsUseCase,
+    private val postUiMapper: PostUiMapper,
+    private val compositeDispose: CompositeDisposable
+) : ViewModel() {
 
     private val _postsLiveData = MutableLiveData<List<PostUiModel>>()
-    val postsLiveData: LiveData<List<PostUiModel>>
-        get() = _postsLiveData
+    val postsLiveData
+        get() = _postsLiveData as LiveData<List<PostUiModel>>
 
     fun getPosts() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val listPostsUiModel = postUiMapper.map(allPostsUseCase.invoke())
-            _postsLiveData.postValue(listPostsUiModel)
-        }
+        compositeDispose.add(
+            allPostsUseCase.invoke()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.computation())
+                .map(postUiMapper::map)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _postsLiveData.value = it
+                }
+        )
     }
 
-    override fun update(o: Observable?, arg: Any?) {
-        getPosts()
+    override fun onCleared() {
+        compositeDispose.dispose()
+        super.onCleared()
     }
 }

@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pmacademyandroid_metelov_m28_hw22.R
-import com.example.pmacademyandroid_metelov_m28_hw22.databinding.BannedPostItemRecycleViewBinding
-import com.example.pmacademyandroid_metelov_m28_hw22.databinding.StandardPostItemRecycleViewBinding
+import com.example.pmacademyandroid_metelov_m28_hw22.databinding.BannedPostItemBinding
+import com.example.pmacademyandroid_metelov_m28_hw22.databinding.StandardPostItemBinding
 
 
 class PostUiModelDiffCallbackItem : DiffUtil.ItemCallback<PostUiModel>() {
@@ -34,9 +34,9 @@ class PostRecycleViewAdapter :
         val viewTypeEnum = ViewType.values()[viewType]
 
         val layout = if (viewTypeEnum == ViewType.STANDARD) {
-            R.layout.standard_post_item_recycle_view
+            R.layout.standard_post_item
         } else {
-            R.layout.banned_post_item_recycle_view
+            R.layout.banned_post_item
         }
 
         val view = LayoutInflater.from(parent.context).inflate(layout, parent, false)
@@ -56,7 +56,7 @@ class PostRecycleViewAdapter :
     }
 
     class ViewHolderForStandardPost(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = StandardPostItemRecycleViewBinding.bind(itemView)
+        private val binding = StandardPostItemBinding.bind(itemView)
 
         fun bind(post: StandardPostUiModel) {
             val strUserId =
@@ -77,7 +77,7 @@ class PostRecycleViewAdapter :
     }
 
     class ViewHolderForBannedPost(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = BannedPostItemRecycleViewBinding.bind(itemView)
+        private val binding = BannedPostItemBinding.bind(itemView)
         fun bind(post: BannedUserPostUiModel) {
             val stringWithUserId: String =
                 String.format(itemView.resources.getString(R.string.post_banned_text), post.userId)

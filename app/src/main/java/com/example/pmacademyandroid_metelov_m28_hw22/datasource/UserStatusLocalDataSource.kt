@@ -16,10 +16,6 @@ class UserStatusLocalDataSource @Inject constructor() {
         statusSet.add(StatusUser(7, Status.BANNED))
     }
 
-    fun addStatusUser(statusUser: StatusUser) = statusSet.add(statusUser)
-
-    fun removeStatusUser(statusUser: StatusUser) = statusSet.remove(statusUser)
-
     fun getSetOfStatusUser(): Set<StatusUser> {
         return statusSet
     }

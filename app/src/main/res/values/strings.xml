@@ -5,6 +5,7 @@
     <string name="post_banned_text">Тут міг бути пост юзера %1$d, але він забанений</string>
     <string name="user_id">User id : %1$s</string>
     <string name="warning_label">З попередженням</string>
+    <string name="success_text">Posts updated successfully</string>
     <string name="add_new_post">Add new post</string>
     <string name="done">Done</string>
     <string name="et_body_hint">Enter body</string>

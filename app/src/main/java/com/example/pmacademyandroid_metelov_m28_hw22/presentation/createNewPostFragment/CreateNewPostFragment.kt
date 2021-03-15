@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.pmacademyandroid_metelov_m28_hw22.App
 import com.example.pmacademyandroid_metelov_m28_hw22.databinding.CreateNewPostFragmentBinding
+import com.example.pmacademyandroid_metelov_m28_hw22.domain.ValidationStatus
 import com.example.pmacademyandroid_metelov_m28_hw22.tools.hideKeyboard
 import javax.inject.Inject
 
@@ -42,12 +43,14 @@ class CreateNewPostFragment : Fragment() {
 
     private fun observeErrorInput(){
         viewModel.stringErrorLiveData.observe(viewLifecycleOwner){
-            if (it.isEmpty()){
-                closeCurrentFragment()
-                this.hideKeyboard()
-            }
-            else{
-                binding.tvInputErrors.text = it
+            when(it){
+                is ValidationStatus.Normal -> {
+                    closeCurrentFragment()
+                    this.hideKeyboard()
+                }
+                is ValidationStatus.Error -> {
+                    binding.tvInputErrors.text = it.errors
+                }
             }
         }
     }

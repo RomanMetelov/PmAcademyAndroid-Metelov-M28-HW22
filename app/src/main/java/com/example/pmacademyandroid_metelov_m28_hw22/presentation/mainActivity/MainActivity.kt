@@ -7,8 +7,8 @@ import com.example.pmacademyandroid_metelov_m28_hw22.App
 import com.example.pmacademyandroid_metelov_m28_hw22.R
 import com.example.pmacademyandroid_metelov_m28_hw22.databinding.ActivityMainBinding
 import com.example.pmacademyandroid_metelov_m28_hw22.presentation.showPostsFragment.ShowAllPostsFragment
+import com.example.pmacademyandroid_metelov_m28_hw22.tools.UpdatingState
 import javax.inject.Inject
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +39,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeError() {
         viewModel.errorLiveData.observe(this, {
-            showError()
+            it?.let {
+                when (it) {
+                    UpdatingState.ERROR -> showError()
+                    UpdatingState.COMPLETED -> showSuccess()
+                    UpdatingState.LOADING -> {
+                    }
+                }
+            }
         })
     }
 
@@ -56,5 +63,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun showError() {
         Toast.makeText(this, R.string.error_text, Toast.LENGTH_LONG).show()
+    }
+
+    private fun showSuccess() {
+        Toast.makeText(this, R.string.success_text, Toast.LENGTH_LONG).show()
     }
 }

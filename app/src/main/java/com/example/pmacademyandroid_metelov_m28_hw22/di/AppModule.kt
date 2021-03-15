@@ -5,8 +5,11 @@ import com.example.pmacademyandroid_metelov_m28_hw22.datasource.api.PostsReposAp
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+
 import javax.inject.Singleton
 
 @Module
@@ -24,6 +27,7 @@ class AppModule(val context: Context) {
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
             .addConverterFactory(gsonConverterFactory)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
@@ -41,4 +45,8 @@ class AppModule(val context: Context) {
         return retrofit.create(PostsReposApi::class.java)
     }
 
+    @Provides
+    fun provideCompositeDisposable(): CompositeDisposable{
+        return CompositeDisposable()
+    }
 }
