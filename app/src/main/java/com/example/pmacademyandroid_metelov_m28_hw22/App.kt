@@ -1,10 +1,7 @@
 package com.example.pmacademyandroid_metelov_m28_hw22
 
 import android.app.Application
-import com.example.pmacademyandroid_metelov_m28_hw22.di.AppComponent
-import com.example.pmacademyandroid_metelov_m28_hw22.di.AppModule
-import com.example.pmacademyandroid_metelov_m28_hw22.di.DaggerAppComponent
-import com.example.pmacademyandroid_metelov_m28_hw22.di.RoomModule
+import com.example.pmacademyandroid_metelov_m28_hw22.di.*
 
 class App : Application() {
 
@@ -16,6 +13,7 @@ class App : Application() {
         daggerComponent = DaggerAppComponent.builder()
             .appModule(AppModule(this))
             .roomModule(RoomModule(this))
+            .dispatcherModule(DispatcherModule)
             .build()
     }
 

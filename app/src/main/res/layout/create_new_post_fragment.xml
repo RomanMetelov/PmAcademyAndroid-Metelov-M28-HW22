@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
-    tools:context=".presentation.createNewPostFragment.CreateNewPostFragment">
+    tools:context=".presentation.newPostFragment.CreateNewPostFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_title"

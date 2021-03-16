@@ -3,7 +3,7 @@ package com.example.pmacademyandroid_metelov_m28_hw22.data
 import javax.inject.Inject
 import com.example.pmacademyandroid_metelov_m28_hw22.datasource.model.AddedFrom
 import com.example.pmacademyandroid_metelov_m28_hw22.datasource.model.UserPostData
-import com.example.pmacademyandroid_metelov_m28_hw22.domain.model.NewPostModel
+import com.example.pmacademyandroid_metelov_m28_hw22.domain.newPost.model.NewPostModel
 
 class NewPostToDataPostMapper @Inject constructor() {
 

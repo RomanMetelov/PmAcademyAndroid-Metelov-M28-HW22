@@ -2,25 +2,28 @@ package com.example.pmacademyandroid_metelov_m28_hw22.presentation
 
 import com.example.pmacademyandroid_metelov_m28_hw22.R
 import com.example.pmacademyandroid_metelov_m28_hw22.data.AndroidResourceRepository
-import com.example.pmacademyandroid_metelov_m28_hw22.domain.model.UserPostDomainModel
-import com.example.pmacademyandroid_metelov_m28_hw22.domain.Status
+import com.example.pmacademyandroid_metelov_m28_hw22.domain.newPost.model.UserPostDomainModel
+import com.example.pmacademyandroid_metelov_m28_hw22.domain.PostStatus
 import javax.inject.Inject
 
-class PostUiMapper @Inject constructor(private val resourceRepository: AndroidResourceRepository) {
+class PostUiMapper @Inject constructor(
+    private val resourceRepository: AndroidResourceRepository
+) {
+
     fun map(domainListModel: List<UserPostDomainModel>): List<PostUiModel> {
         return domainListModel.let(this::getPostUiModels)
     }
 
     private fun getPostUiModels(userPostDomainModel: List<UserPostDomainModel>): List<PostUiModel> {
         return userPostDomainModel.map {
-            when (it.status) {
-                Status.STANDARD -> {
+            when (it.postStatus) {
+                PostStatus.STANDARD -> {
                     getStandardPostUiModel(it)
                 }
-                Status.WITH_WARNING -> {
+                PostStatus.WITH_WARNING -> {
                     getStandardPostUiModel(it)
                 }
-                Status.BANNED -> {
+                PostStatus.BANNED -> {
                     getUserPostUiModelBanned(it)
                 }
             }
@@ -28,9 +31,9 @@ class PostUiMapper @Inject constructor(private val resourceRepository: AndroidRe
     }
 
     private fun getStandardPostUiModel(userPostDomainModel: UserPostDomainModel): StandardPostUiModel {
-        val (backgroundColor, hasWarning) = when (userPostDomainModel.status) {
-            Status.WITH_WARNING -> Pair(
-                PostColors(resourceRepository.getColor(R.color.banned_post_bg)),
+        val (backgroundColor, hasWarning) = when (userPostDomainModel.postStatus) {
+            PostStatus.WITH_WARNING -> Pair(
+                PostColors(resourceRepository.getColor(R.color.warning_post_bg)),
                 true
             )
             else -> Pair(

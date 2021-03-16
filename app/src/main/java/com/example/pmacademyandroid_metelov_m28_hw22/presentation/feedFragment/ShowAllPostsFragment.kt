@@ -1,4 +1,4 @@
-package com.example.pmacademyandroid_metelov_m28_hw22.presentation.showPostsFragment
+package com.example.pmacademyandroid_metelov_m28_hw22.presentation.feedFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pmacademyandroid_metelov_m28_hw22.App
 import com.example.pmacademyandroid_metelov_m28_hw22.R
-import com.example.pmacademyandroid_metelov_m28_hw22.presentation.createNewPostFragment.CreateNewPostFragment
+import com.example.pmacademyandroid_metelov_m28_hw22.presentation.newPostFragment.CreateNewPostFragment
 import com.example.pmacademyandroid_metelov_m28_hw22.databinding.ShowAllPostsFragmentBinding
 import com.example.pmacademyandroid_metelov_m28_hw22.presentation.PostRecycleViewAdapter
 import com.example.pmacademyandroid_metelov_m28_hw22.presentation.PostUiModel
 import javax.inject.Inject
+
 
 class ShowAllPostsFragment : Fragment() {
 

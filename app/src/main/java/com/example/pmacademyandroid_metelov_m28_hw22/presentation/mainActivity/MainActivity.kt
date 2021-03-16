@@ -6,9 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.pmacademyandroid_metelov_m28_hw22.App
 import com.example.pmacademyandroid_metelov_m28_hw22.R
 import com.example.pmacademyandroid_metelov_m28_hw22.databinding.ActivityMainBinding
-import com.example.pmacademyandroid_metelov_m28_hw22.presentation.showPostsFragment.ShowAllPostsFragment
+import com.example.pmacademyandroid_metelov_m28_hw22.presentation.feedFragment.ShowAllPostsFragment
 import com.example.pmacademyandroid_metelov_m28_hw22.tools.UpdatingState
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
 
