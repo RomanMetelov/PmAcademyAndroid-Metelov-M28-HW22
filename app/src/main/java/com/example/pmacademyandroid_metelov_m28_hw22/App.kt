@@ -15,6 +15,8 @@ class App : Application() {
             .roomModule(RoomModule(this))
             .dispatcherModule(DispatcherModule)
             .build()
+
+
     }
 
     fun getComponent(): AppComponent {
