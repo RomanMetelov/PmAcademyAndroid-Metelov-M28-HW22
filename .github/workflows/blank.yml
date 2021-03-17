@@ -23,9 +23,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-
-      - name: Run Unit tests
-        run: chmod +x ./gradlew app:test
         
       - name: Run detekt
         run: chmod +x ./gradlew app:detekt
