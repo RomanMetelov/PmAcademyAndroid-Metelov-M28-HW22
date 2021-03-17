@@ -12,14 +12,10 @@ data class StandardPostUiModel(
         val title: String,
         val body: String,
         val hasWarning: Boolean,
-        val colors: PostColors
+        @ColorInt val backgroundColor: Int
 ) : PostUiModel()
 
 data class BannedUserPostUiModel(
         override val postId: Int,
         val userId: Int
 ) : PostUiModel()
-
-data class PostColors(
-        @ColorInt val backgroundColor: Int
-)
